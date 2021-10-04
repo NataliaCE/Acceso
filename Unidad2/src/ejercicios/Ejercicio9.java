@@ -12,21 +12,24 @@ public class Ejercicio9 {
 		Scanner s = new Scanner(System.in);
 		File fichero = new File("ficheros\\ProfesFPSierraGuara.dat");
 		int id;
+		int posicion;
 		int lectura;
 		
-		if(!fichero.exists()) {
+		/*if(!fichero.exists()) {
 			crearFichero(fichero);
-		}
+		}*/
+		//crearFichero(fichero);
 		
 		System.out.print("Introduce el ID: ");
 		id = s.nextInt();
+		posicion = (id-1)*56;
 		s.close();
 		
 		try {
 			RandomAccessFile raf = new RandomAccessFile(fichero, "rw");
-			raf.seek(id);
+			raf.seek(posicion);
 			
-			if(raf.length() < id) {
+			if(raf.length() < posicion) {
 				System.out.println("Este fichero no es tan largo.");
 				System.exit(-1);
 			}
@@ -34,6 +37,7 @@ public class Ejercicio9 {
 			lectura = raf.readInt();
 			if(lectura == 0) {
 				System.out.println("Este profesor ya ha sido borrado.");
+				System.out.println(lectura);
 				System.exit(-1);
 			}
 			if(lectura == id) {

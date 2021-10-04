@@ -1,0 +1,20 @@
+<MisPeliculas>
+  <Pelicula>
+    <id>1</id>
+    <titulo>El señor de los anillos: La comunidad del anillo.</titulo>
+    <anyo>2001</anyo>
+    <descripcion>Ambientada en la Tierra Media, cuenta la histora de...</descripcion>
+  </Pelicula>
+  <Pelicula>
+    <id>2</id>
+    <titulo>El señor de los anillos: Las dos torres</titulo>
+    <anyo>2002</anyo>
+    <descripcion>La trama de la pelicula comienza tras la disolución de la comunidad del anillo</descripcion>
+  </Pelicula>
+  <Pelicula>
+    <id>3</id>
+    <titulo>El señor de los anillo: El retorno del rey</titulo>
+    <anyo>2003</anyo>
+    <descripcion>Trata sobre la última parte del viaje de que emprendieros los protagonistas.</descripcion>
+  </Pelicula>
+</MisPeliculas>
