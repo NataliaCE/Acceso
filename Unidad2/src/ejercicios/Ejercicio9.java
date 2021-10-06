@@ -5,9 +5,11 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.Scanner;
 
+import org.omg.PortableServer.ID_ASSIGNMENT_POLICY_ID;
+
 public class Ejercicio9 {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		
 		Scanner s = new Scanner(System.in);
 		File fichero = new File("ficheros\\ProfesFPSierraGuara.dat");
@@ -18,14 +20,21 @@ public class Ejercicio9 {
 		/*if(!fichero.exists()) {
 			crearFichero(fichero);
 		}*/
-		//crearFichero(fichero);
+		crearFichero(fichero);
 		
 		System.out.print("Introduce el ID: ");
 		id = s.nextInt();
 		posicion = (id-1)*56;
 		s.close();
 		
-		try {
+		RandomAccessFile raf = new RandomAccessFile(fichero, "rw");
+		raf.seek(posicion);
+		int idPos = raf.readInt();
+		
+		System.out.println(idPos);
+		
+		
+		/*try {
 			RandomAccessFile raf = new RandomAccessFile(fichero, "rw");
 			raf.seek(posicion);
 			
@@ -52,7 +61,7 @@ public class Ejercicio9 {
 			
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		}*/
 
 	}
 	

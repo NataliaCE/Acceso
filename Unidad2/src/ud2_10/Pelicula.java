@@ -1,6 +1,7 @@
 package ud2_10;
 
 public class Pelicula {
+	
 	private int id;
 	private String titulo;
 	private int anyo;
@@ -12,6 +13,11 @@ public class Pelicula {
 		this.titulo = titulo;
 		this.anyo = anyo;
 		this.descripcion = descripcion;
+	}
+	
+	@Override
+	public String toString() {
+		return "Pelicula [id=" + id + ", titulo=" + titulo + ", anyo=" + anyo + ", descripcion=" + descripcion + "]";
 	}
 	
 }
