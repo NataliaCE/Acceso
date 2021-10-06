@@ -78,7 +78,7 @@ public class Ejercicio9 {
 			for(int i = 0; i < total; i++) {
 				raf.writeInt(i + 1);
 				sb = new StringBuffer(profesores[i]);
-				sb.setLength(40);
+				sb.setLength(20);
 				raf.writeChars(sb.toString());
 				raf.writeInt(departamentos[i]);
 				raf.writeDouble(antiguedad[i]);
