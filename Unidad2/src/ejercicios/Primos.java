@@ -12,8 +12,7 @@ public class Primos {
 			lista.add(2);
 		}
 		
-		System.out.println(calcular(40000));
-		System.out.println(calcular(40001));
+		System.out.println(calcular(60000));
 		
 	}
 	
