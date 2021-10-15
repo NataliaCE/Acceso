@@ -20,7 +20,7 @@ public class AccesoBD {
 	
 	public Connection conecta;
 	
-	public void conectar() throws ClassNotFoundException, SQLException {
+	public void conectar() throws SQLException, ClassNotFoundException {
 		Class.forName(driver);
 		conecta = DriverManager.getConnection(url, username, password);
 	}
@@ -43,8 +43,8 @@ public class AccesoBD {
 		String nombre = null;
 		try {
 			Statement consulta = conecta.createStatement();
-			ResultSet reg = consulta.executeQuery("SELECT * FROM usuaro WHERE username = '" + usuario + 
-					"' AND password = " + contrasenya);
+			ResultSet reg = consulta.executeQuery("SELECT * FROM usuario WHERE username = '" + usuario + 
+					"' AND password = '" + contrasenya + "'");
 			if(reg.next()) {
 				nombre = reg.getString(3);
 			}
