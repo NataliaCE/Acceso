@@ -80,7 +80,7 @@ public class ControlAcceso {
 				String usuario = txtUsuario.getText();
 				String contrasenya = String.valueOf(txtContrasenya.getPassword());
 				String resultado = null;
-				AccesoBD abd = new AccesoBD();
+				AccesoBD_PS abd = new AccesoBD_PS();
 				try {
 					abd.conectar();
 					resultado = abd.verificacion(usuario, contrasenya);

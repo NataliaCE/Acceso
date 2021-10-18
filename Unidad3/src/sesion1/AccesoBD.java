@@ -25,20 +25,6 @@ public class AccesoBD {
 		conecta = DriverManager.getConnection(url, username, password);
 	}
 	
-	public boolean usuarioExiste(String usuario) {
-		boolean existe = false;
-		try {
-			Statement consulta = conecta.createStatement();
-			ResultSet reg = consulta.executeQuery("SELECT * FROM usuaro WHERE username = '" + usuario + "'");
-			if(reg.next()) existe = true;
-			
-		} catch (SQLException e) {
-			System.out.println("Problema al conectar con la BD");
-			e.printStackTrace();
-		}
-		return existe;
-	}
-	
 	public String verificacion(String usuario, String contrasenya) {
 		String nombre = null;
 		try {
