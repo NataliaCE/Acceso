@@ -1,10 +1,12 @@
 package anexoII;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class AccesoBDatos {
 
@@ -45,6 +47,69 @@ public class AccesoBDatos {
 		}
 		
 		return emp;
+	}
+	
+	public ArrayList<Empleado> busquedaPorOficio(String oficio) {
+		ArrayList<Empleado> lista = new ArrayList<Empleado>();
+		String sql = "SELECT * FROM emp WHERE job = ?";
+		Empleado emp;
+		try {
+			PreparedStatement consulta = conecta.prepareStatement(sql);
+			consulta.setString(1, oficio);
+			ResultSet rs = consulta.executeQuery();
+			while(rs.next()) {
+				emp = new Empleado(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4),
+						rs.getDate(5), rs.getDouble(6), rs.getDouble(7), rs.getInt(8));
+				lista.add(emp);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return lista;
+	}
+	
+	public ArrayList<Empleado> busquedaPorAntiguedad(Date fecha) {
+		ArrayList<Empleado> lista = new ArrayList<Empleado>();
+		String sql = "SELECT * FROM emp WHERE hiredate <= ?";
+		Empleado emp;
+		try {
+			PreparedStatement consulta = conecta.prepareStatement(sql);
+			consulta.setDate(1, fecha);
+			ResultSet rs = consulta.executeQuery();
+			while(rs.next()) {
+				emp = new Empleado(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4),
+						rs.getDate(5), rs.getDouble(6), rs.getDouble(7), rs.getInt(8));
+				lista.add(emp);
+			}
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return lista;
+	}
+	
+	public int insertarEmpleado(Empleado emp) {
+		String sql = "INSERT INTO emp VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+		try {
+			PreparedStatement consulta = conecta.prepareStatement(sql);
+			consulta.setInt(1, emp.getNumDepartamento());
+			consulta.setString(2, emp.getNombre());
+			consulta.setString(3, emp.getTrabajo());
+			consulta.setInt(4, emp.getManager());
+			consulta.setDate(5, emp.getFechaContrato());
+			consulta.setDouble(6, emp.getSalario());
+			consulta.setDouble(7, emp.getComision());
+			consulta.setInt(8, emp.getNumDepartamento());
+			return consulta.executeUpdate();
+			
+		} catch (SQLException e) {
+			return e.getErrorCode();
+		}
 	}
 	
 }
