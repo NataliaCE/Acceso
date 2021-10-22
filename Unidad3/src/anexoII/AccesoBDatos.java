@@ -97,7 +97,7 @@ public class AccesoBDatos {
 		String sql = "INSERT INTO emp VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
 		try {
 			PreparedStatement consulta = conecta.prepareStatement(sql);
-			consulta.setInt(1, emp.getNumDepartamento());
+			consulta.setInt(1, emp.getNumEmpleado());
 			consulta.setString(2, emp.getNombre());
 			consulta.setString(3, emp.getTrabajo());
 			consulta.setInt(4, emp.getManager());
@@ -110,6 +110,32 @@ public class AccesoBDatos {
 		} catch (SQLException e) {
 			return e.getErrorCode();
 		}
+	}
+	
+	public int actualizarSalario(int departamento, double porcentaje) {
+		String sql = "UPDATE emp SET sal = ? * sal WHERE deptno = ?;";
+		try {
+			PreparedStatement consulta = conecta.prepareStatement(sql);
+			consulta.setDouble(1, porcentaje);
+			consulta.setInt(2, departamento);
+			return consulta.executeUpdate();
+			
+		} catch (SQLException e) {
+			return e.getErrorCode();
+		}
+	}
+	
+	public int borrarEmpleado(int numero) {
+		String sql = "DELETE FROM emp WHERE empno = ?;";
+		try {
+			PreparedStatement consulta = conecta.prepareStatement(sql);
+			consulta.setInt(1, numero);
+			return consulta.executeUpdate();
+			
+		} catch (SQLException e) {
+			return e.getErrorCode();
+		}
+		
 	}
 	
 }

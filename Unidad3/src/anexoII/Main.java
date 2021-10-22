@@ -32,6 +32,18 @@ public class Main {
 			sqlFecha = new java.sql.Date(fecha.getTime());
 			Empleado e1 = new Empleado(1, "CARRERA", "PROFESOR", 7788, sqlFecha, 700, 0, 20);
 			System.out.println(abd.insertarEmpleado(e1));
+			System.out.println("\n-----------------------------------\n");
+			
+			//I
+			System.out.println(abd.actualizarSalario(30, 0.2));
+			System.out.println(abd.actualizarSalario(44, 0.15));
+			System.out.println("\n-----------------------------------\n");
+			
+			//J
+			System.out.println(abd.borrarEmpleado(1));
+			System.out.println(abd.borrarEmpleado(99));
+			System.out.println(abd.borrarEmpleado(7839));
+			System.out.println("\n-----------------------------------\n");
 			
 		} catch (ClassNotFoundException | SQLException | ParseException e) {
 			// TODO Auto-generated catch block
