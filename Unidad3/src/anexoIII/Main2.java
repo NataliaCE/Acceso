@@ -17,13 +17,10 @@ public class Main2 {
 		
 		Scanner s = new Scanner(System.in);
 		int categoria;
-		String nombre;
-		Double precio;
-		int existencias;
-		int minimo;
 		
 		System.out.print("Introduce el número de categoría: ");
 		categoria = s.nextInt();
+		s.close();
 		System.out.println("Producto  -  Precio - Existencias - Minimo");
 		System.out.println("-------------------------------------------");
 		

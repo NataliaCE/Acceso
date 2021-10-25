@@ -25,6 +25,7 @@ public class Main1 {
 		
 		System.out.print("Introduce el número de pedido: ");
 		pedido = s.nextInt();
+		s.close();
 		
 		try {
 			Class.forName(driver);

@@ -116,13 +116,32 @@ public class AccesoBDatos {
 		String sql = "UPDATE emp SET sal = ? * sal WHERE deptno = ?;";
 		try {
 			PreparedStatement consulta = conecta.prepareStatement(sql);
-			consulta.setDouble(1, porcentaje);
+			consulta.setDouble(1, porcentaje + 1);
 			consulta.setInt(2, departamento);
 			return consulta.executeUpdate();
 			
 		} catch (SQLException e) {
 			return e.getErrorCode();
 		}
+	}
+	
+	public int actualizarSalarioConTransacciones (int departamento, double porcentaje) {
+		int resultado;
+		String sql = "UPDATE emp SET sal = ? * sal WHERE deptno = ?;";
+		try {
+			conecta.setAutoCommit(false);
+			PreparedStatement consulta = conecta.prepareStatement(sql);
+			consulta.setDouble(1, porcentaje + 1);
+			consulta.setInt(2, departamento);
+			resultado = consulta.executeUpdate();
+			conecta.commit();
+		
+		} catch (SQLException e) {
+			resultado = e.getErrorCode();
+			e.printStackTrace();
+		}
+		
+		return resultado;
 	}
 	
 	public int borrarEmpleado(int numero) {

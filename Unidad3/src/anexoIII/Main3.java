@@ -24,6 +24,7 @@ public class Main3 {
 		categoria = s.nextInt();
 		System.out.print("Introduce el número de porcentaje: ");
 		porcentaje = s.nextInt();
+		s.close();
 		
 		try {
 			Class.forName(driver);

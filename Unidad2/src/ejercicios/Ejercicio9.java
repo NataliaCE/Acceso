@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.Scanner;
 
-import org.omg.PortableServer.ID_ASSIGNMENT_POLICY_ID;
-
 public class Ejercicio9 {
 
 	public static void main(String[] args) throws IOException {
@@ -17,24 +15,17 @@ public class Ejercicio9 {
 		int posicion;
 		int lectura;
 		
-		/*if(!fichero.exists()) {
+		if(!fichero.exists()) {
 			crearFichero(fichero);
-		}*/
-		crearFichero(fichero);
+		}
 		
 		System.out.print("Introduce el ID: ");
 		id = s.nextInt();
 		posicion = (id-1)*56;
 		s.close();
 		
-		RandomAccessFile raf = new RandomAccessFile(fichero, "rw");
-		raf.seek(posicion);
-		int idPos = raf.readInt();
 		
-		System.out.println(idPos);
-		
-		
-		/*try {
+		try {
 			RandomAccessFile raf = new RandomAccessFile(fichero, "rw");
 			raf.seek(posicion);
 			
@@ -46,12 +37,12 @@ public class Ejercicio9 {
 			lectura = raf.readInt();
 			if(lectura == 0) {
 				System.out.println("Este profesor ya ha sido borrado.");
-				System.out.println(lectura);
 				System.exit(-1);
 			}
 			if(lectura == id) {
-				raf.seek(id);
+				raf.seek(posicion);
 				raf.writeInt(0);
+				System.out.println("Borrado.");
 				
 			} else {
 				System.out.println("El número introducido no es un ID.");
@@ -61,7 +52,7 @@ public class Ejercicio9 {
 			
 		} catch (IOException e) {
 			e.printStackTrace();
-		}*/
+		}
 
 	}
 	

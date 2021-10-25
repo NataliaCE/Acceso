@@ -45,8 +45,10 @@ public class Main {
 			System.out.println(abd.borrarEmpleado(7839));
 			System.out.println("\n-----------------------------------\n");
 			
+			//I con Transacciones
+			System.out.println(abd.actualizarSalarioConTransacciones(30, 0.2));
+			
 		} catch (ClassNotFoundException | SQLException | ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
