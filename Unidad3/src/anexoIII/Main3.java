@@ -35,7 +35,7 @@ public class Main3 {
 			consulta.setInt(1, categoria);
 			consulta.setInt(2, porcentaje);
 			consulta.registerOutParameter(3, Types.INTEGER);
-			consulta.execute();
+			consulta.executeQuery();
 			resultado = consulta.getInt(3);
 			
 			if(resultado == -1) {

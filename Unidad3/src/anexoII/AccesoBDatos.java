@@ -33,7 +33,7 @@ public class AccesoBDatos {
 		String sql = "SELECT * FROM emp WHERE empno = ?";
 		Empleado emp = null;
 		try {
-			PreparedStatement consulta = conecta.prepareStatement(sql);
+			PreparedStatement consulta = conecta.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			consulta.setInt(1, codigo);
 			ResultSet rs = consulta.executeQuery();
 			if(rs.next()) {
