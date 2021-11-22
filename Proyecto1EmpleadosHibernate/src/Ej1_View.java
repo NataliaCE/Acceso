@@ -2,18 +2,25 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 
+import org.hibernate.ObjectNotFoundException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import primero.Departamentos;
 import primero.Empleados;
 import primero.SessionFactoryUtil;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
+import java.util.Iterator;
+import java.util.List;
 import java.awt.event.ActionEvent;
 
 public class Ej1_View {
@@ -26,6 +33,9 @@ public class Ej1_View {
 	JTextField txtSalario;
 	JTextField txtComision;
 	JTextField txtFecha;
+	JComboBox<String> CmbxDepartamento;
+	JComboBox<String> CmbxDirector;
+	SessionFactory sesion = SessionFactoryUtil.getSessionFactory();
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -37,8 +47,6 @@ public class Ej1_View {
 				}
 			}
 		});
-		
-		
 		
 	}
 
@@ -109,12 +117,13 @@ public class Ej1_View {
 		frmGestinDeEmpleados.getContentPane().add(txtComision);
 		txtComision.setColumns(10);
 		
-		JComboBox CmbxDepartamento = new JComboBox();
+		CmbxDepartamento = new JComboBox();
 		CmbxDepartamento.setToolTipText("Elige departamento");
 		CmbxDepartamento.setBounds(279, 73, 145, 22);
+		rellenarDepartamentos();
 		frmGestinDeEmpleados.getContentPane().add(CmbxDepartamento);
 		
-		JComboBox CmbxDirector = new JComboBox();
+		CmbxDirector = new JComboBox();
 		CmbxDirector.setToolTipText("Elige director");
 		CmbxDirector.setBounds(279, 106, 145, 22);
 		frmGestinDeEmpleados.getContentPane().add(CmbxDirector);
@@ -164,17 +173,44 @@ public class Ej1_View {
 		
 		frmGestinDeEmpleados.setVisible(true);
 	}
-	
-	public void consultar() {
-		String numero = txtNEmpleado.getText();
-		
+	public void rellenarDepartamentos() {
 		SessionFactory sesion = SessionFactoryUtil.getSessionFactory();
 		Session session = sesion.openSession();
 		
+		Query q = session.createQuery("from Departamentos");
+		List <Departamentos> lista = q.list();
+		Iterator <Departamentos> it = lista.iterator();
+		while(it.hasNext()) {
+			Departamentos dep = (Departamentos) it.next();
+			CmbxDepartamento.addItem(String.valueOf(dep.getDeptNo()) + "/" + dep.getDnombre());
+		}
+	}
+	
+	public void rellenarDirectores() {
+		
+	}
+	
+	public void consultar() {
+		String numero = txtNEmpleado.getText();
 		Empleados emp = new Empleados();
-		emp = (Empleados) session.load(Empleados.class, Byte.valueOf(numero));
 		
-		
+		try {
+			Session session = sesion.openSession();
+			emp = (Empleados) session.load(Empleados.class, Short.valueOf(numero));
+			
+			txtApellido.setText(emp.getApellido());
+			txtOficio.setText(emp.getOficio());
+			txtSalario.setText(String.valueOf(emp.getSalario())+"€");
+			if(emp.getComision() == null) {
+				txtComision.setText("Sin comisión");
+			} else {
+				txtComision.setText(String.valueOf(emp.getComision()));
+			}
+			txtFecha.setText(String.valueOf(emp.getFechaAlt()));
+			
+		} catch(ObjectNotFoundException e) {
+			JOptionPane.showMessageDialog(null, "No existe este empleado", "Aviso", JOptionPane.WARNING_MESSAGE);
+		}
 	
 	}
 	
