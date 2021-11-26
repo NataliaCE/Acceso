@@ -1,5 +1,8 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Iterator;
@@ -114,7 +117,15 @@ public class Controlador implements ActionListener{
 		String oficio = this.vista.txtOficio.getText();
 		String salario = this.vista.txtSalario.getText();
 		String comision = this.vista.txtComision.getText();
-		String fecha = this.vista.txtFecha.getText();
+		String fechaString = this.vista.txtFecha.getText();
+		String dep = this.vista.CmbxDepartamento.getSelectedItem().toString();
+		String dir = this.vista.CmbxDirector.getSelectedItem().toString();
+		try {
+			Date fecha = (Date) new SimpleDateFormat("yyyy-MM-dd").parse(fechaString);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
