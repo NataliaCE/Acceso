@@ -23,7 +23,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.awt.event.ActionEvent;
 
-public class Ej1_View {
+public class Ejercicio {
 
 
 	private JFrame frame;
@@ -41,7 +41,7 @@ public class Ej1_View {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Ej1_View window = new Ej1_View();
+					Ejercicio window = new Ejercicio();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -53,7 +53,7 @@ public class Ej1_View {
 	/**
 	 * Create the application.
 	 */
-	public Ej1_View() {
+	public Ejercicio() {
 		initialize();
 	}
 
@@ -92,6 +92,16 @@ public class Ej1_View {
 		lblNewLabel_5.setBounds(24, 139, 83, 14);
 		frmGestinDeEmpleados.getContentPane().add(lblNewLabel_5);
 		
+		JLabel lblNewLabel_6 = new JLabel("FECHA ALTA:");
+		lblNewLabel_6.setBounds(245, 139, 83, 14);
+		frmGestinDeEmpleados.getContentPane().add(lblNewLabel_6);
+		
+		JLabel lblNewLabel_7 = new JLabel("(yyyy-MM-dd)");
+		lblNewLabel_7.setFont(new Font("Tahoma", Font.PLAIN, 8));
+		lblNewLabel_7.setBounds(336, 153, 58, 14);
+		frmGestinDeEmpleados.getContentPane().add(lblNewLabel_7);
+		
+		//EDIT TEXT
 		txtNEmpleado = new JTextField();
 		txtNEmpleado.setBounds(116, 36, 86, 20);
 		frmGestinDeEmpleados.getContentPane().add(txtNEmpleado);
@@ -117,6 +127,12 @@ public class Ej1_View {
 		frmGestinDeEmpleados.getContentPane().add(txtComision);
 		txtComision.setColumns(10);
 		
+		txtFecha = new JTextField();
+		txtFecha.setBounds(326, 136, 86, 20);
+		frmGestinDeEmpleados.getContentPane().add(txtFecha);
+		txtFecha.setColumns(10);
+		
+		//COMBO BOX
 		CmbxDepartamento = new JComboBox();
 		CmbxDepartamento.setToolTipText("Elige departamento");
 		CmbxDepartamento.setBounds(279, 73, 145, 22);
@@ -126,22 +142,10 @@ public class Ej1_View {
 		CmbxDirector = new JComboBox();
 		CmbxDirector.setToolTipText("Elige director");
 		CmbxDirector.setBounds(279, 106, 145, 22);
+		rellenarDirectores();
 		frmGestinDeEmpleados.getContentPane().add(CmbxDirector);
 		
-		JLabel lblNewLabel_6 = new JLabel("FECHA ALTA:");
-		lblNewLabel_6.setBounds(245, 139, 83, 14);
-		frmGestinDeEmpleados.getContentPane().add(lblNewLabel_6);
-		
-		txtFecha = new JTextField();
-		txtFecha.setBounds(326, 136, 86, 20);
-		frmGestinDeEmpleados.getContentPane().add(txtFecha);
-		txtFecha.setColumns(10);
-		
-		JLabel lblNewLabel_7 = new JLabel("(yyyy-MM-dd)");
-		lblNewLabel_7.setFont(new Font("Tahoma", Font.PLAIN, 8));
-		lblNewLabel_7.setBounds(336, 153, 58, 14);
-		frmGestinDeEmpleados.getContentPane().add(lblNewLabel_7);
-		
+		//BOTONES
 		JButton btnConsultar = new JButton("CONSULTAR EMPLEADO");
 		btnConsultar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -174,7 +178,6 @@ public class Ej1_View {
 		frmGestinDeEmpleados.setVisible(true);
 	}
 	public void rellenarDepartamentos() {
-		SessionFactory sesion = SessionFactoryUtil.getSessionFactory();
 		Session session = sesion.openSession();
 		
 		Query q = session.createQuery("from Departamentos");
@@ -182,12 +185,20 @@ public class Ej1_View {
 		Iterator <Departamentos> it = lista.iterator();
 		while(it.hasNext()) {
 			Departamentos dep = (Departamentos) it.next();
-			CmbxDepartamento.addItem(String.valueOf(dep.getDeptNo()) + "/" + dep.getDnombre());
+			CmbxDepartamento.addItem(String.valueOf(dep.getDeptNo()) + " / " + dep.getDnombre());
 		}
 	}
 	
 	public void rellenarDirectores() {
+		Session session = sesion.openSession();
 		
+		Query q = session.createQuery("from Empleados");
+		List<Empleados> lista = q.list();
+		Iterator<Empleados> it = lista.iterator();
+		while(it.hasNext()) {
+			Empleados emp = (Empleados) it.next();
+			CmbxDirector.addItem(String.valueOf(emp.getEmpNo()) + " / " + emp.getApellido());
+		}
 	}
 	
 	public void consultar() {
@@ -207,6 +218,17 @@ public class Ej1_View {
 				txtComision.setText(String.valueOf(emp.getComision()));
 			}
 			txtFecha.setText(String.valueOf(emp.getFechaAlt()));
+			
+			Departamentos dep = emp.getDepartamentos();
+			CmbxDepartamento.setSelectedItem(String.valueOf(dep.getDeptNo()) + " / " + dep.getDnombre());
+			
+			for(int i = 0; i < CmbxDirector.getItemCount(); i++) {
+				String item = CmbxDirector.getItemAt(i);
+				if(item.startsWith(String.valueOf(emp.getDir()))) {
+					CmbxDirector.setSelectedIndex(i);
+					break;
+				}
+			}
 			
 		} catch(ObjectNotFoundException e) {
 			JOptionPane.showMessageDialog(null, "No existe este empleado", "Aviso", JOptionPane.WARNING_MESSAGE);

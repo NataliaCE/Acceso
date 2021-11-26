@@ -1,3 +1,9 @@
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Iterator;
 import java.util.List;
 
@@ -11,18 +17,10 @@ import primero.SessionFactoryUtil;
 
 public class Pruebas {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException {
 		
-		SessionFactory sesion = SessionFactoryUtil.getSessionFactory();
-		Session session = sesion.openSession();
-		
-		Query q = session.createQuery("from Departamentos");
-		List <Departamentos> lista = q.list();
-		Iterator <Departamentos> it = lista.iterator();
-		while(it.hasNext()) {
-			Departamentos dep = (Departamentos) it.next();
-			System.out.println(dep.getDeptNo() + dep.getDnombre());
-		}
+		//String fecha = ZonedDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE);
+		//Date date1 = (Date) new SimpleDateFormat("yyyy-MM-dd").parse(fecha);
 	}
 
 }
