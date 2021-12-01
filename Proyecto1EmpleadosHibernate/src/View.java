@@ -143,6 +143,18 @@ public class View extends JFrame {
 		
 		btnInsertar.addActionListener(c);
 		btnInsertar.setActionCommand("INSERTAR");
+		
+		btnEliminar.addActionListener(c);
+		btnEliminar.setActionCommand("ELIMINAR");
+		
+		btnSalir.addActionListener(c);
+		btnSalir.setActionCommand("SALIR");
+		
+		btnLimpiar.addActionListener(c);
+		btnLimpiar.setActionCommand("LIMPIAR");
+		
+		btnLimpiar.addActionListener(c);
+		btnLimpiar.setActionCommand("MODIFICAR");
 	}
 	
 }
