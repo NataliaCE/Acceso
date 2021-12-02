@@ -1,4 +1,5 @@
 import java.awt.Font;
+import java.awt.TextComponent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -7,6 +8,8 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class View extends JFrame {
 
@@ -69,31 +72,85 @@ public class View extends JFrame {
 		
 		//EDIT TEXT
 		txtNEmpleado = new JTextField();
+		txtNEmpleado.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if(!Character.isDigit(c) || txtNEmpleado.getText().length() > 4) {
+					e.consume();
+				}
+			}
+		});
 		txtNEmpleado.setBounds(116, 36, 86, 20);
 		frmGestinDeEmpleados.getContentPane().add(txtNEmpleado);
 		txtNEmpleado.setColumns(10);
+		txtNEmpleado.setTransferHandler(null);
 		
 		txtApellido = new JTextField();
 		txtApellido.setBounds(116, 61, 153, 20);
 		frmGestinDeEmpleados.getContentPane().add(txtApellido);
 		txtApellido.setColumns(10);
+		txtApellido.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if(!Character.isAlphabetic(c) || txtApellido.getText().length() > 10) {
+					e.consume();
+				}
+			}
+		});
 		
 		txtOficio = new JTextField();
 		txtOficio.setBounds(116, 86, 153, 20);
 		frmGestinDeEmpleados.getContentPane().add(txtOficio);
 		txtOficio.setColumns(10);
+		txtOficio.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if(!Character.isAlphabetic(c) || txtOficio.getText().length() > 10) {
+					e.consume();
+				}
+			}
+		});
 		
 		txtSalario = new JTextField();
+		txtSalario.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if(c != 46) {
+					if(!Character.isDigit(c) || txtSalario.getText().length() > 10) {
+						e.consume();
+					}
+				}
+				
+			}
+		});
 		txtSalario.setBounds(116, 111, 86, 20);
 		frmGestinDeEmpleados.getContentPane().add(txtSalario);
 		txtSalario.setColumns(10);
 		
 		txtComision = new JTextField();
+		txtComision.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if(!Character.isDigit(c) || txtSalario.getText().length() > 10) {
+					e.consume();
+				}
+			}
+		});
 		txtComision.setBounds(116, 136, 86, 20);
 		frmGestinDeEmpleados.getContentPane().add(txtComision);
 		txtComision.setColumns(10);
 		
 		txtFecha = new JTextField();
+		txtFecha.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
+		});
 		txtFecha.setBounds(326, 136, 86, 20);
 		frmGestinDeEmpleados.getContentPane().add(txtFecha);
 		txtFecha.setColumns(10);
@@ -153,8 +210,8 @@ public class View extends JFrame {
 		btnLimpiar.addActionListener(c);
 		btnLimpiar.setActionCommand("LIMPIAR");
 		
-		btnLimpiar.addActionListener(c);
-		btnLimpiar.setActionCommand("MODIFICAR");
+		btnModificar.addActionListener(c);
+		btnModificar.setActionCommand("MODIFICAR");
 	}
 	
 }

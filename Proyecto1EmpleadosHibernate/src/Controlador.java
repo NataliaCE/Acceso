@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -44,7 +45,6 @@ public class Controlador implements ActionListener{
 			case "CONSULTAR":
 				consultar();
 				break;
-			
 			case "INSERTAR":
 				insertar();
 				break;
@@ -100,10 +100,8 @@ public class Controlador implements ActionListener{
 			
 			this.vista.txtApellido.setText(emp.getApellido());
 			this.vista.txtOficio.setText(emp.getOficio());
-			this.vista.txtSalario.setText(String.valueOf(emp.getSalario())+"€");
-			if(emp.getComision() == null) {
-				this.vista.txtComision.setText("Sin comisión");
-			} else {
+			this.vista.txtSalario.setText(String.valueOf(emp.getSalario()));
+			if(emp.getComision() != null) {
 				this.vista.txtComision.setText(String.valueOf(emp.getComision()));
 			}
 			this.vista.txtFecha.setText(String.valueOf(emp.getFechaAlt()));
@@ -212,8 +210,8 @@ public class Controlador implements ActionListener{
 		Boolean esDirector = false;
 		//Comprobar si es director
 		Session session = sesion.openSession();
-		Empleados director = (Empleados) session.createQuery("from Empleados as emp "
-				+ "where emp.dir= :dir").setShort("dir", numero).uniqueResult();
+		ArrayList<Empleados> director = (ArrayList<Empleados>) session.createQuery("from Empleados as emp "
+				+ "where emp.dir= :dir").setShort("dir", numero).list();
 		if(director != null) {
 			esDirector = true;
 			JOptionPane.showMessageDialog(null, "Este empleado es un director", "Aviso", JOptionPane.WARNING_MESSAGE);
@@ -243,20 +241,48 @@ public class Controlador implements ActionListener{
 		String fechaString = this.vista.txtFecha.getText();
 		String depString = this.vista.CmbxDepartamento.getSelectedItem().toString();
 		String dirString = this.vista.CmbxDirector.getSelectedItem().toString();
+		//Conversiones
+		java.sql.Date fecha = null;
+		try {
+			java.util.Date fechaJava = new SimpleDateFormat("yyyy-MM-dd").parse(fechaString);
+			fecha = new java.sql.Date(fechaJava.getTime());
+		} catch (ParseException e) {
+			System.out.println("Error al convertir la fecha.");
+			e.printStackTrace();
+		}
+		Short dir = Short.parseShort(dirString.substring(0, 4));
+		Byte depNum = Byte.parseByte(depString.substring(0, 2));
 		//Validación
 		if(numero.isEmpty() || apellido.isEmpty() || oficio.isEmpty() || salario.isEmpty() ||
 				fechaString.isEmpty() || depString.isEmpty() || dirString.isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Menos la comisión, es obligatorio completar todos los datos.",
 					"Aviso", JOptionPane.WARNING_MESSAGE);
 		} else {
+			//Modificación
 			Session session = sesion.openSession();
 			Transaction tx = session.beginTransaction();
 			Empleados emp = new Empleados();
+			Departamentos dep = new Departamentos(depNum);
 			try {
 				emp = (Empleados) session.get(Empleados.class, Short.parseShort(numero));
+				emp.setApellido(apellido);
+				emp.setOficio(oficio);
+				emp.setSalario(Float.parseFloat(salario));
+				emp.setFechaAlt(fecha);
+				emp.setDir(dir);
+				emp.setDepartamentos(dep);
+				if(!comision.equals("")) {
+					emp.setComision(Float.parseFloat(comision));
+				}
+				session.update(emp);
+				tx.commit();
+				JOptionPane.showMessageDialog(null, "Empleado modificado.", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+				rellenarDirectores();
+				
 			} catch(ObjectNotFoundException o) {
 			System.out.println("NO EXISTE EL EMPLEADO...");
 			}
+			session.close();
 		}
 		
 	}
