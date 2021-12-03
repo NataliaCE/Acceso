@@ -47,9 +47,11 @@ public class Controlador implements ActionListener{
 				break;
 			case "INSERTAR":
 				insertar();
+				rellenarDirectores();
 				break;
 			case "ELIMINAR":
 				eliminar();
+				rellenarDirectores();
 				break;
 			case "SALIR":
 				salir();
@@ -59,6 +61,7 @@ public class Controlador implements ActionListener{
 				break;
 			case "MODIFICAR":
 				modificar();
+				rellenarDirectores();
 				break;
 		}
 		
@@ -201,7 +204,6 @@ public class Controlador implements ActionListener{
 		}
 		session.close();
 		JOptionPane.showMessageDialog(null, "Empleado insertado", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-		rellenarDirectores();
 		return true;
 	}
 	
@@ -212,7 +214,7 @@ public class Controlador implements ActionListener{
 		Session session = sesion.openSession();
 		ArrayList<Empleados> director = (ArrayList<Empleados>) session.createQuery("from Empleados as emp "
 				+ "where emp.dir= :dir").setShort("dir", numero).list();
-		if(director != null) {
+		if(!director.isEmpty()) {
 			esDirector = true;
 			JOptionPane.showMessageDialog(null, "Este empleado es un director", "Aviso", JOptionPane.WARNING_MESSAGE);
 		}
