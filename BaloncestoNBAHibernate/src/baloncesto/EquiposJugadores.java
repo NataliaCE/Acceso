@@ -28,7 +28,7 @@ public class EquiposJugadores {
 			Equipos equipo = (Equipos) it.next();
 			System.out.println("Nombre : " + equipo.getNombre());
 			
-			Query qu = session.createQuery("select j.codigo, j.nombre, avg(e.puntosPorpPartido) "
+			Query qu = session.createQuery("select j.codigo, j.nombre, avg(e.puntosPorPartido) "
 					+ "from Jugadores as j join j.estadisticases as e group by j.nombre");
 			List<Object> lista = qu.list();
 			Iterator ite = lista.iterator();
