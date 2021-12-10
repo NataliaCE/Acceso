@@ -7,8 +7,8 @@ import javax.persistence.*;
 public class Point implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue
+	@Id //Indica que este atributo es una clase primaria.
+	@GeneratedValue //Indica que este atributo se generará de forma automática.
 	private long id;
 
 	private int x;
