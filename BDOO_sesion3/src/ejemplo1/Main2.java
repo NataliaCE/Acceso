@@ -3,6 +3,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Set;
 
+import javax.crypto.AEADBadTagException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -31,7 +32,18 @@ public class Main2 {
 		
 	//	abd.imprimirDepartamento(10);
 	
-	abd.demoJPQL();
+	//	abd.demoJPQL();
+		
+	//	abd.ejercicio8_1();
+	//	abd.ejercicio8_2();
+	//	abd.ejercicio8_3();
+	//	abd.ejercicio8_4();
+	//	abd.ejercicio8_5();
+	//	abd.ejercicio8_6();
+	//	abd.ejercicio8_7();
+	//	abd.ejercicio8_8();
+	//	abd.ejercicio8_9();
+	//	abd.ejercicio8_10();
 		
 		abd.desconectar();
 	

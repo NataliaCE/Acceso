@@ -56,5 +56,4 @@ public class DepartamentoEntity {
 				+ ", empleados=" + empleados + "]";
 	}
 	
-	
 }

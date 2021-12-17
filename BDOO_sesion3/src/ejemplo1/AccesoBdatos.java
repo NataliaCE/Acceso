@@ -2,6 +2,8 @@ package ejemplo1;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -136,12 +138,105 @@ public class AccesoBdatos {
 	}// de demoJPQL
 //--------------------------------------------------------------------------------------------------------------
 	
-	public void ejercicio8() {
-		TypedQuery<EmpleadoEntity> tq1 = em.createQuery("SELECT e FROM EmpleadoEntity", EmpleadoEntity.class);
+	public void ejercicio8_1() {
+		TypedQuery<EmpleadoEntity> tq1 = em.createQuery("SELECT e FROM EmpleadoEntity e", EmpleadoEntity.class);
 		List<EmpleadoEntity> listaEmpleados = tq1.getResultList();
 		for(EmpleadoEntity e : listaEmpleados) {
 			System.out.println(e.getNombre() + " - " + e.getAlta());
 		}
 	}
 	
+	public void ejercicio8_2() {
+		TypedQuery<EmpleadoEntity> tq = em.createQuery("SELECT e FROM EmpleadoEntity e "
+				+ "WHERE UPPER(e.nombre) LIKE UPPER('%carrera%')", EmpleadoEntity.class);
+		List<EmpleadoEntity> listaEmpleados = tq.getResultList();
+		for(EmpleadoEntity e : listaEmpleados) {
+			System.out.println(e.getNombre() + " - " + e.getAlta());
+		}
+	}
+	
+	public void ejercicio8_3() {
+		TypedQuery<EmpleadoEntity> tq = em.createQuery("SELECT e FROM EmpleadoEntity e "
+				+ "WHERE e.departamento.dptoId = 20 AND e.oficio = 'Empleado", EmpleadoEntity.class);
+		List<EmpleadoEntity> listaEmpleados = tq.getResultList();
+		for(EmpleadoEntity e : listaEmpleados) {
+			System.out.println(e.getNombre() + " - " + e.getOficio() + " - " + e.getDepartamento().getNombre());
+		}
+	}
+	
+	public void ejercicio8_4() {
+		TypedQuery<EmpleadoEntity> tq = em.createQuery("SELECT e FROM EmpleadoEntity e ", EmpleadoEntity.class);
+		List<EmpleadoEntity> listaEmpleados = tq.getResultList();
+		Calendar c = Calendar.getInstance();
+		for(EmpleadoEntity e : listaEmpleados) {
+			c.setTime(e.getAlta());
+			if(c.get(Calendar.YEAR) >= 2003) {
+				System.out.println(e.getNombre() + " - " + e.getAlta());
+			}
+		}
+	}
+	
+	public void ejercicio8_5() {
+		TypedQuery<EmpleadoEntity> tq = em.createQuery("SELECT e FROM EmpleadoEntity e "
+				+ "ORDER BY e.departamento.nombre", EmpleadoEntity.class);
+		List<EmpleadoEntity> listaEmpleados = tq.getResultList();
+		for(EmpleadoEntity e : listaEmpleados) {
+			System.out.println(e.getDepartamento().getNombre() + " - " + e.getNombre());
+		}
+	}
+	
+	public void ejercicio8_6() {
+		TypedQuery<DepartamentoEntity> tq = em.createQuery("SELECT d FROM DepartamentoEntity d", DepartamentoEntity.class);
+		List<DepartamentoEntity> lista = tq.getResultList();
+		for(DepartamentoEntity d : lista) {
+			if(!d.getEmpleados().isEmpty()) {
+				int salarioMax = 0;
+				int salarioTotal = 0;
+				for(EmpleadoEntity e : d.getEmpleados()) {
+					salarioTotal =+ e.getSalario();
+					if(salarioMax < e.getSalario()) salarioMax = e.getSalario();
+				}
+				System.out.println(d.getNombre() + " - " + d.getEmpleados().size() + " - " + salarioTotal +
+						" - " + salarioMax);
+			}
+		}
+	}
+	
+	public void ejercicio8_7() {
+		TypedQuery<Object[]> tq = em.createQuery("SELECT e.departamento.nombre, COUNT(e.empnoId), SUM(e.salario), MAX(e.salario)"
+				+ " FROM EmpleadoEntity e GROUP BY e.departamento HAVING COUNT(e.empnoId) > 4", Object[].class);
+		List<Object[]> lista = tq.getResultList();
+		for(Object[] fila : lista) {
+			System.out.println(fila[0] + " - " + fila[1] + " - " + fila[2] + " - " + fila[3]);
+		}
+	}
+	
+	public void ejercicio8_8() {
+		TypedQuery<EmpleadoEntity> tq1 = em.createQuery("SELECT e FROM EmpleadoEntity e", EmpleadoEntity.class);
+		List<EmpleadoEntity> listaEmpleados = tq1.getResultList();
+		for(EmpleadoEntity e : listaEmpleados) {
+			if(e.getDirId() != null) {
+				System.out.println(e.getNombre() + " -> Jefe: " + e.getDirId().getNombre() + 
+						", Departamento: " + e.getDepartamento().getDptoId());
+			}
+		}
+	}
+	
+	public void ejercicio8_9() {
+		TypedQuery<DepartamentoEntity> tq = em.createQuery("SELECT d FROM DepartamentoEntity d", DepartamentoEntity.class);
+		List<DepartamentoEntity> lista = tq.getResultList();
+		for(DepartamentoEntity d : lista) {
+			if(!d.getEmpleados().isEmpty()) {
+				System.out.println(d.getNombre() + " - " + d.getEmpleados().size());
+			}
+		}
+	}
+	
+	public void ejercicio8_10() {
+		TypedQuery<DepartamentoEntity> tq = em.createQuery("SELECT d FROM DepartamentoEntity d", DepartamentoEntity.class);
+		List<DepartamentoEntity> lista = tq.getResultList();
+		for(DepartamentoEntity d : lista) {
+			System.out.println(d.getNombre() + " - " + d.getEmpleados().size());
+		}
+	}
 } // de la clase
