@@ -142,7 +142,7 @@ public class AccesoBdatos {
 		TypedQuery<EmpleadoEntity> tq1 = em.createQuery("SELECT e FROM EmpleadoEntity e", EmpleadoEntity.class);
 		List<EmpleadoEntity> listaEmpleados = tq1.getResultList();
 		for(EmpleadoEntity e : listaEmpleados) {
-			System.out.println(e.getNombre() + " - " + e.getAlta());
+			System.out.println(e.getNombre() + " - " + e.getEmpnoId() + " - " + e.getDirId());
 		}
 	}
 	
@@ -239,4 +239,105 @@ public class AccesoBdatos {
 			System.out.println(d.getNombre() + " - " + d.getEmpleados().size());
 		}
 	}
+	
+	public void ejercicio8_11() {
+		TypedQuery<EmpleadoEntity> tq = em.createQuery("SELECT e FROM EmpleadoEntity e "
+				+ "ORDER BY e.departamento.dptoId DESC, e.salario ASC", EmpleadoEntity.class);
+		List<EmpleadoEntity> listaEmpleados = tq.getResultList();
+		for(EmpleadoEntity e : listaEmpleados) {
+			System.out.println(e.getDepartamento().getDptoId() + " - " + e.getNombre() + " - " + e.getSalario());
+		}
+	}
+	
+	public void ejercicio8_12() {
+		TypedQuery<EmpleadoEntity> tq = em.createQuery("SELECT e FROM EmpleadoEntity e "
+				+ "WHERE e.dirId IS NULL", EmpleadoEntity.class);
+		List<EmpleadoEntity> listaEmpleados = tq.getResultList();
+		for(EmpleadoEntity e : listaEmpleados) {
+			System.out.println(e.getEmpnoId() + " - " + e.getNombre());
+		}
+	}
+	
+	public void ejercicio8_13() {
+		TypedQuery<EmpleadoEntity> tq = em.createQuery("SELECT e FROM EmpleadoEntity e "
+				+ "WHERE e.empnoId = 1039", EmpleadoEntity.class);
+		EmpleadoEntity e = tq.getSingleResult();
+		System.out.println(e.getDepartamento().getDptoId() + " - " + e.getDepartamento().getNombre());
+	}
+	
+	public int incrementarSalario(int cantidad) {
+		em.getTransaction().begin();
+		Query q = em.createQuery("UPDATE EmpleadoEntity SET salario = salario + " + cantidad);
+		int resultado = q.executeUpdate();
+		em.getTransaction().commit();
+		return resultado;
+	}
+	
+	public int incrementarSalarioOficio(String oficio, int cantidad) {
+		em.getTransaction().begin();
+		Query q = em.createQuery("UPDATE EmpleadoEntity SET salario = salario + :cant "
+				+ "WHERE UPPER(oficio) LIKE UPPER(:ofi)");
+		q.setParameter("cant", cantidad);
+		q.setParameter("ofi", oficio);
+		int resultado = q.executeUpdate();
+		em.getTransaction().commit();
+		return resultado;
+	}
+	
+	public int incrementarSalarioDepartamento(int numDepartamento, int cantidad) {
+		try {
+			em.getTransaction().begin();
+			Query q = em.createQuery("UPDATE EmpleadoEntity SET salario = salario + :cant "
+					+ "WHERE departamento.getDptoId() = :num");
+			q.setParameter("cant", cantidad);
+			q.setParameter("num", numDepartamento);
+			int resultado = q.executeUpdate();
+			em.getTransaction().commit();
+			return resultado;
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	
+	public int borrarEmpleado(int numEmpleado) {
+		em.getTransaction().begin();
+		try {
+			Query q = em.createQuery("DELETE FROM EmpleadoEntity WHERE empnoId = :num");
+			q.setParameter("num", numEmpleado);
+			int resultado = q.executeUpdate();
+			
+			Query qu = em.createQuery("UPDATE EmpleadoEntity SET dirId = null WHERE dirId = :num");
+			qu.setParameter("num", numEmpleado);
+			System.out.println("Empleados modificados: " + qu.executeUpdate());;
+			
+			em.getTransaction().commit();
+			return resultado;
+			
+		} catch(Exception e) {
+			em.getTransaction().rollback();
+			System.out.println("EXception");
+			e.getStackTrace();
+			return 0;
+		}
+	}
+	
+	public int borrarDepartamento2(int numDepartamento) {
+		em.getTransaction().begin();
+		try {
+			Query q = em.createQuery("DELETE FROM DepartamentoEntity WHERE dptoId = :num");
+			q.setParameter("num", numDepartamento);
+			int resultado = q.executeUpdate();
+			em.getTransaction().commit();
+			return resultado;
+			
+		} catch(Exception e) {
+			em.getTransaction().rollback();
+			System.out.println("Exception");
+			e.getStackTrace();
+			return 0;
+		}
+	}
+	
 } // de la clase

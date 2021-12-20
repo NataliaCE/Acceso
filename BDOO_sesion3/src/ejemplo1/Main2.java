@@ -41,9 +41,15 @@ public class Main2 {
 	//	abd.ejercicio8_5();
 	//	abd.ejercicio8_6();
 	//	abd.ejercicio8_7();
-	//	abd.ejercicio8_8();
+		abd.ejercicio8_8();
 	//	abd.ejercicio8_9();
 	//	abd.ejercicio8_10();
+	//	abd.ejercicio8_11();
+	//	abd.ejercicio8_12();
+	//	abd.ejercicio8_13();
+		
+		System.out.println("-------------------------------------------");
+		//System.out.println(abd.borrarEmpleado(2088));
 		
 		abd.desconectar();
 	
