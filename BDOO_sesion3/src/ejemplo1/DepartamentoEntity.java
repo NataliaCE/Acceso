@@ -3,6 +3,7 @@ package ejemplo1;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -15,8 +16,20 @@ public class DepartamentoEntity {
 	private int dptoId;
 	private String nombre;
 	private String localidad;
-	@OneToMany(mappedBy="departamento") // Relación 1 a muchos (un departamento para muchos empleados)
+	@OneToMany(mappedBy="departamento") // Relación 1 a muchos (un departamento para muchos empleados), en Hibernate --> Empleadoses
 		private Set<EmpleadoEntity> empleados = new HashSet<EmpleadoEntity>();
+	/*
+	 * @OneToMany(mappedBy="departamento",cascade= CascadeType.ALL, orphanRemoval=true)
+	 * 
+	 * cascadeType.ALL --> Se transmiten en cascada las 5 posibilidades (persist, refresh, etc) 
+	 * cascadeType.PERSIST --> Las persistencias hechas en el departamento se propagan a los empleados
+	 * cascadeType.REFRESH --> Las actualizaciones hechas en el departamento se propagan a los empleados
+	 * cascadeType.REMOVE --> Las eliminaciones hechas en el departamento se propagan a los empleados, que se quedan "zombies"
+	 * 
+	 * FetchType.EAGER --> Al recuperar un departamento, recupera también todos sus empleados
+	 * FetchType.LAZY --> Al recuperar un departamentos, extrae solo el departamento sin sus empleados
+	 */
+	
 	//
 	public DepartamentoEntity(int dptoId, String nombre, String localidad) {
 

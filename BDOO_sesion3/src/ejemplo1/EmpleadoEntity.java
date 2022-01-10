@@ -11,6 +11,16 @@ import javax.persistence.ManyToOne;
 //Alberto Carrera Martín - Abril 2020
 //
 
+/*
+ * @NamedQueries({
+ * 		@NamedQuery(name = "numeroEmpleados",
+ * 			query = "SELECT COUNT(e) FROM EmpleadoEntity e WHERE e.departamento.nombre = :nombre"),
+ * 		@NamedQuery(...)
+ * })
+ * 
+ * Para usarlas --> entityManager.createNamedQuery("numeroEmpleados").setParameter(10).singleResult();
+ */
+
 @Entity
 public class EmpleadoEntity {
 	@Id

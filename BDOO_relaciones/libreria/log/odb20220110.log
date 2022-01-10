@@ -1,0 +1,17 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2022-01-10 09:38:49 #1 store] 
+Database 'C:\Users\DAM2Alu3\Desktop\Acceso de datos\Unidad 5\ficheros\XObjectDbSesion4\db\empleados1.odb' is opened by 8988@B02-PC10
+
+[2022-01-10 09:38:49 #2 store] 
+Configuration path: ?
+
+[2022-01-10 09:38:49 #3 type] 
+Type DepartamentoEntity is not enhanced.
+
+[2022-01-10 09:38:49 #4 type] 
+Type EmpleadoEntity is not enhanced.
+
+[2022-01-10 09:38:49 #5 store] 
+Database 'C:\Users\DAM2Alu3\Desktop\Acceso de datos\Unidad 5\ficheros\XObjectDbSesion4\db\empleados1.odb' is closed by 8988@B02-PC10
+
