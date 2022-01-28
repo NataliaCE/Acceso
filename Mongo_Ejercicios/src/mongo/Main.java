@@ -1,6 +1,7 @@
 package mongo;
 
 import java.util.Iterator;
+import java.util.TreeSet;
 
 import org.bson.Document;
 
@@ -31,7 +32,8 @@ public class Main {
 
 		//insertaCiudad(huesca, coleccion);
 		//listarCiudades(coleccion);
-		listarCiudadesPais("ES", coleccion);
+		//listarCiudadesPais("FR", coleccion);
+		listarPaises(coleccion);
 		
 		mongo.close();
 	}
@@ -69,10 +71,24 @@ public class Main {
 	
 	public static void listarCiudadesPais(String pais, MongoCollection<Document> coleccion) {
 		Document criterios = new Document("country", pais);
-		FindIterable find = coleccion.find(criterios);
+		FindIterable<Document> find = coleccion.find(criterios);
 		Iterator<Document> it = find.iterator();
 		while(it.hasNext()) {
 			System.out.println(it.next().getString("name"));
+		}
+	}
+	
+	public static void listarPaises(MongoCollection<Document> coleccion) {
+		TreeSet<String> paises = new TreeSet<String>();
+		
+		FindIterable<Document> iterDoc = coleccion.find();
+		Iterator<Document> it = iterDoc.iterator();
+		while(it.hasNext()) {
+			paises.add(it.next().getString("country"));
+		}
+		
+		for(String pais : paises) {
+			System.out.println(pais);
 		}
 	}
 
