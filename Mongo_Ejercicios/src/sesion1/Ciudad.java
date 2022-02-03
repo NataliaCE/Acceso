@@ -1,4 +1,4 @@
-package mongo;
+package sesion1;
 
 public class Ciudad {
   private String name;
