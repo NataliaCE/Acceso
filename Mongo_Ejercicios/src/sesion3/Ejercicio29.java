@@ -24,8 +24,8 @@ public class Ejercicio29 {
 		collection = database.getCollection("ciudades");
 		
 		//3 ciudades españolas con más habitantes
-		Document match = new Document("$match", new Document("country", "ES"));
-		Document project = new Document("$project", new Document("_id", 0)
+		Document match = new Document("$match", new Document("country", "ES")); //Filtrado de campos (WHERE)
+		Document project = new Document("$project", new Document("_id", 0) //Campos que no queremos mostrar y nuevos campos calculados
 				.append("country", 0)
 				.append("timezone", 0)
 				.append("location", 0)
