@@ -1,5 +1,6 @@
 package sesion1;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import org.bson.Document;
@@ -34,21 +35,25 @@ public class Consultas {
 	// Datos de las ciudades españolas con más de 1.000.000 de habitantes ordenado de mayor a menor.
 	public static void ej5(MongoCollection<Document> coleccion) {
 		
-		Document criterios = new Document("population", new Document("$gte", 10000))
+		ArrayList<Document> lista = new ArrayList<Document>();
+		lista.add(new Document("population", new Document("$gte", 1000)));
+		lista.add(new Document("population", new Document("$lte", 10000000)));
+		
+		Document criterios = new Document("$and", lista)
 				.append("country", "ES");
 		
 		//Busqueda
 		FindIterable<Document> find = coleccion.find(criterios)
 				.sort(new Document("population", -1))
 				//.limit(10)
-				.projection(Projections.exclude("_id"))
-				.projection(Projections.include("name", "population"));
+				.projection(Projections.exclude("_id", "timezone"));
+				//.projection(Projections.include("name", "population"));
 		//Recorrer resultado
 		Iterator<Document> it = find.iterator();
 		while(it.hasNext()) {
-			//Document doc = it.next();
-			//System.out.println(doc.getString("name") + " " + doc.getInteger("population"));
-			System.out.println(it.next());
+			Document doc = it.next();
+			//System.out.println(doc.getString("name") + " " + doc.getLong("population"));
+			System.out.println(doc);
 		}
 		
 	}
