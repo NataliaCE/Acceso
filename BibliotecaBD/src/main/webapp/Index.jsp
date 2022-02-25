@@ -11,7 +11,7 @@
 		<h1>Biblioteca</h1>
 		<h2>Seleccione lo que desea hacer a continuación:</h2>
 		
-		<form method="post" action="insertaLibros">
+		<form method="post" action="InsertaLibros.jsp">
 				<button type="submit">Insertar libro</button>
 			</form>
 			<form method="post" action="consultarLibros">
