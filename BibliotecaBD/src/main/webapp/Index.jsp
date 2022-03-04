@@ -4,6 +4,7 @@
 <html>
 	<head>
 		<meta charset="ISO-8859-1">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<title>Biblioteca</title>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
@@ -41,7 +42,7 @@
 		                            		</div>
 		                            		<div class="col-md-3 px-1">
 		                                    	<div class="form-group">
-		                                        	<form method="post" action="MostrarLibros.jsp">
+		                                        	<form method="post" action="MostrarLibros">
 		                                        		<button class="btn btn-primary">Mostrar libros</button>
 		                                        	</form>
 		                                        </div>

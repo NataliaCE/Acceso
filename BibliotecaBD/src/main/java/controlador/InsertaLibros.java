@@ -13,6 +13,8 @@ import modelo.AccesoBD;
 @WebServlet("/InsertaLibros")
 public class InsertaLibros extends HttpServlet{
 
+	private static final long serialVersionUID = 1L;
+
 	public InsertaLibros() {
 		super();
 	}
@@ -47,6 +49,8 @@ public class InsertaLibros extends HttpServlet{
 				e.printStackTrace();
 			}
 		}
+		
+		db.desconectar();
 		
 	}
 
