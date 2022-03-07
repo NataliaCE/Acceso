@@ -24,7 +24,7 @@
 			<div class="main-panel">
 				<div class="content">
 					<div class="container-fluid">
-						<div class="row">
+						<div class="row justify-content-md-center">
                         	<div class="col-md-12">
                             	<div class="card strpied-tabled-with-hover">
                                 	<div class="card-header ">

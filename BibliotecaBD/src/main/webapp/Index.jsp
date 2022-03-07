@@ -18,6 +18,7 @@
 	    <link href="../assets/css/demo.css" rel="stylesheet" />
 	    <script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/48/2/intl/es_ALL/common.js"></script>
 	    <script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/48/2/intl/es_ALL/util.js"></script>
+	    
 	</head>
 	
 	<body>
@@ -25,14 +26,14 @@
 			<div class="main-panel">
 				<div class="content">
 		        	<div class="container-fluid">
-		            	<div class="row">
+		            	<div class="row justify-content-md-center">
 		                	<div class="col-md-5">
 		                    	<div class="card">
-		                        	<div class="card-header">
-		                            	<h1 class="card-title">Biblioteca</h1>
+		                        	<div class="card-header text-center">
+		                            	<h1 class="card-title">BIBLIOTECA</h1>
 		                            </div>
 		                            <div class="card-body">
-		                            	 <div class="row">
+		                            	 <div class="row justify-content-md-center">
 		                                 	<div class="col-md-5 pr-1">
 		                                    	<div class="form-group">
 		                                        	<form method="post" action="InsertaLibros.jsp">

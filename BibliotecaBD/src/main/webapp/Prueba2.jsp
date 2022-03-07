@@ -22,86 +22,16 @@
     <script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/48/2/intl/es_ALL/common.js"></script>
     <script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/48/2/intl/es_ALL/util.js"></script>
     
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg">
-	<div class="container">
-		<a class="navbar-brand" href="#pablo"> Dashboard </a>
-
-		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"  aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-bar burger-lines"></span>
-			<span class="navbar-toggler-bar burger-lines"></span>
-			<span class="navbar-toggler-bar burger-lines"></span>
-		</button>
-
-	    <div class="collapse navbar-collapse justify-content-end">
-            <ul class="nav navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a href="#" class="nav-link" data-toggle="dropdown">
-						<i class="nc-icon nc-palette"></i>
-
-						<span class="d-lg-none">Dashboard</span>
-                    </a>
-                </li>
-                <li class="dropdown nav-item">
-                      <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-							<i class="nc-icon nc-planet"></i>
-                            <span class="notification">5</span>
-							<span class="d-lg-none">Notification</span>
-                      </a>
-                      <ul class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Notification 1</a>
-                        <a class="dropdown-item" href="#">Notification 2</a>
-                        <a class="dropdown-item" href="#">Notification 3</a>
-                        <a class="dropdown-item" href="#">Notification 4</a>
-                        <a class="dropdown-item" href="#">Another notification</a>
-                      </ul>
-                </li>
-                <li class="nav-item">
-                   <a href="#" class="nav-link">
-						<i class="nc-icon nc-zoom-split"></i>
-						<span class="d-lg-block">&nbsp;Search</span>
-                    </a>
-                </li>
-            </ul>
-            <ul class="navbar-nav ml-auto">
-            	<li class="nav-item">
-                    <a class="nav-link" href="#pablo">
-                    	<span class="no-icon">Account</span>
-                    </a>
-            	</li>
-            	<li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="https://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    	<span class="no-icon">Dropdown</span>
-
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    	<a class="dropdown-item" href="#">Action</a>
-                    	<a class="dropdown-item" href="#">Another action</a>
-                    	<a class="dropdown-item" href="#">Something</a>
-                    	<a class="dropdown-item" href="#">Something else here</a>
-                    	<div class="divider"></div>
-                    	<a class="dropdown-item" href="#">Separated link</a>
-                    </div>
-            	</li>
-            </ul>
-	    </div>
+	
+	
+		<div class="text-center">
+		<p>Centrado</p>
 	</div>
-</nav>
-
-<div class="content">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-8">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">Edit Profile</h4>
-                                </div>
-							</div>
-						</div>
-					</div>
-				</div>
-</div>
+	
  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
 <!--   Core JS Files   -->
