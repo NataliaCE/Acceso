@@ -37,14 +37,14 @@
 		                                 	<div class="col-md-5 pr-1">
 		                                    	<div class="form-group">
 		                                        	<form method="post" action="InsertaLibros.jsp">
-		                                        		<button class="btn btn-primary">Insertar libros</button>
+		                                        		<button class="btn btn-info">Insertar libros</button>
 		                                        	</form>
 		                                        </div>
 		                            		</div>
 		                            		<div class="col-md-3 px-1">
 		                                    	<div class="form-group">
 		                                        	<form method="post" action="MostrarLibros">
-		                                        		<button class="btn btn-primary">Mostrar libros</button>
+		                                        		<button class="btn btn-info">Mostrar libros</button>
 		                                        	</form>
 		                                        </div>
 		                                	</div>

@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insercion fallida</title>
+<title>Insercion correcta</title>
 </head>
 <body>
-<h1>Error con la inserción</h1>
+<p>Ha sucedidio un error</p>
 </body>
 </html>

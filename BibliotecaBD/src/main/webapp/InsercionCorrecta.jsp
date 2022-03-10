@@ -18,5 +18,11 @@ String prestado = request.getParameter("prestado");
 <p> Titulo: <%= titulo %> </p>
 <p> Autor: <%= autor %> </p>
 <p> Estado: <%= prestado %> </p>
+<form method="post" action="InsertaLibros.jsp">
+	<button>Insertar otro libro</button>
+</form>
+<form method="post" action="MostrarLibros.jsp">
+	<button>Insertar otro libro</button>
+</form>
 </body>
 </html>

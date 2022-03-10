@@ -6,7 +6,7 @@
 		<meta charset="ISO-8859-1">
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-		<title>Insertar libros</title>
+		<title>Modificar libros</title>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
 		<!-- CSS Files -->
     	<link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
@@ -21,6 +21,7 @@
 	</head>
 	
 	<body>
+	<% request.setCharacterEncoding("UTF-8"); %>
 		<div class="wrapper">
 			<div class="main-panel">
 				<div class="content">
@@ -29,7 +30,7 @@
 							<div class="col-md-6">
 								<div class="card">
 									<div class="card-header">
-                                    	<h4 class="card-title">Insertar libro</h4>
+                                    	<h4 class="card-title">Modificar libro</h4>
                                 	</div>
                                 	<div class="card-body">
                                 		<form method="post" action="InsertaLibros">
@@ -37,39 +38,45 @@
                                         		<div class="col-md-3 pr-1">
 	                                            	<div class="form-group">
 	                                            		<label>ID</label>
-	                                            		<input type="text" class="form-control" name="id" size=4>
+	                                            		<input type="text" class="form-control" name="id" size=4 value="<%=request.getParameter("id")%>">
 	                                            	</div>
                                             	</div>
                                         	</div>
                                         	<div class="row ml-5 mr-5">
                                             	<div class="form-group">
                                             		<label>Título</label>
-                                            		<input type="text" class="form-control" name="titulo" size=50>
+                                            		<input type="text" class="form-control" name="titulo" size=50 value="<%=request.getParameter("titulo")%>">
                                             	</div>
                                         	</div>
                                         	<div class="row ml-5 mr-5">
                                             	<div class="form-group">
                                             		<label>Autor</label>
-                                            		<input type="text" class="form-control" name="autor" size=30>
+                                            		<input type="text" class="form-control" name="autor" size=30 value="<%=request.getParameter("autor")%>">
                                             	</div>
                                         	</div>
                                         	<div class="row ml-5 mr-5">
-	                                        	<div class="col-md-3 pr-1">
+	                                        	<div class="col-md-4 pr-1">
 	                                            	<div class="form-group">
 	                                            		<label>Estado</label>
 	                                            		<select class="form-select" name="prestado">
+	                                            		<%if(request.getParameter("prestado").equals("true")) {
+	                                            			%><option value="true" selected>Prestado</option>
+															<option value="false">Disponible</option>
+	                                            		<% } else {%>
 															<option value="true">Prestado</option>
-															<option value="false">Disponible</option>	
+															<option value="false" selected>Disponible</option>	
+														<% } %>
 														</select>
 	                                            	</div>
 	                                            </div>
                                         	</div>
                                         	<div class="row justify-content-md-center mt-4">
                                         		<div class="col-md-3 pr-1">
-                                        		<button class="btn btn-info">Insertar</button>
+                                        		<button class="btn btn-info">Modificar</button>
                                         		</div>
                                         	</div>
                                     	</form>
+                                    	<%out.println("Prueba " + request.getParameter("id")); %>
                                 	</div>
 								</div>
 							</div>
@@ -78,7 +85,7 @@
 				</div>
 			</div>
 		</div>
-	
+		
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
 	<!--   Core JS Files   -->
@@ -97,5 +104,5 @@
 	<script src="../assets/js/light-bootstrap-dashboard.js?v=2.0.0 " type="text/javascript"></script>
 	<!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
 	<script src="../assets/js/demo.js"></script>
-</body>
+	</body>
 </html>

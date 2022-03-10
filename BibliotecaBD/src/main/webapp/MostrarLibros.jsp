@@ -41,6 +41,7 @@
 	                                        <tbody>
 	                                      
 <%
+String prueba = "hola";
 ArrayList<Libro> lista = null;
 lista = (ArrayList<Libro>) request.getAttribute("Libros");
 
@@ -50,17 +51,36 @@ for(Libro l : lista) {
 	out.println("<td>" + l.getAutor() + "</td>");
 	
 	if(l.isPrestado()) {
-		out.println("<td>Prestado</td></tr>");
+		out.println("<td>Prestado</td>");
 	} else {
-		out.println("<td>Disponible</td></tr>");
+		out.println("<td>Disponible</td>");
 	}
-	
-}
+%>
+										<td>
+										<form method="post" action="modificaLibro.jsp">
+											<input type="hidden" name="id" value="<%=l.getId() %>">
+											<input type="hidden" name="titulo" value="<%=l.getTitulo() %>">
+											<input type="hidden" name="autor" value="<%=l.getAutor() %>">
+											<input type="hidden" name="prestado" value="<%=l.isPrestado() %>">
+											<button type="submit" class="btn btn-info">Modificar</button>
+										</form>
+										</td>
+										
+										<td>
+										<form method="post" action="borraLibro.jsp">
+											<input type="hidden" name="id" value="<% l.getId(); %>">
+											<button type="submit" class="btn btn-danger">Borrar</button>
+										</form>
+										</td></tr>
+										
+<%
+}// del for
 
 
 %>	 
 	                                     	</tbody>
                                 		</table>
+                                		<%out.print("Prueba " + prueba); %>
                                 	</div>
                                 </div>
                     		</div>
