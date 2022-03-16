@@ -78,8 +78,8 @@
 											<%
 											} else {
 											%>
-											<option value="true">Prestado</option>
-											<option value="false" selected>Disponible</option>
+											<option value="True">Prestado</option>
+											<option value="False" selected>Disponible</option>
 											<%
 											}
 											%>

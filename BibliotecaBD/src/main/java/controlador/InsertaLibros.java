@@ -24,12 +24,7 @@ public class InsertaLibros extends HttpServlet{
 		int id = Integer.parseInt(request.getParameter("id"));
 		String titulo = request.getParameter("titulo");
 		String autor = request.getParameter("autor");
-		boolean prestado;
-		if(request.getParameter("prestado").equals("Prestado")) {
-			prestado = true;
-		} else {
-			prestado = false;
-		}
+		boolean prestado = Boolean.getBoolean(request.getParameter("prestado"));
 		
 		AccesoBD db = new AccesoBD();
 		db.conectar();

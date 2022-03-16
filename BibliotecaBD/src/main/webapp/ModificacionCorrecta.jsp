@@ -33,7 +33,13 @@
 	String id = request.getParameter("id");
 	String titulo = request.getParameter("titulo");
 	String autor = request.getParameter("autor");
-	String prestado = request.getParameter("prestado");
+	Boolean prestado = Boolean.parseBoolean(request.getParameter("prestado"));
+	String prestadoString;
+	if(prestado) {
+		prestadoString = "Prestado";
+	} else {
+		prestadoString = "Disponible";
+	}
 	%>
 	<div class="container-fluid">
 		<div class="row justify-content-md-center">
