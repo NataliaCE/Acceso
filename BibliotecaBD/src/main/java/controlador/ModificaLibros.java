@@ -25,8 +25,8 @@ public class ModificaLibros extends HttpServlet{
 		String titulo = request.getParameter("titulo");
 		String autor = request.getParameter("autor");
 		
-		String parametro = request.getParameter("prestado");
-		boolean prestado = Boolean.parseBoolean(parametro);	
+		//String parametro = request.getParameter("prestado");
+		boolean prestado = Boolean.parseBoolean(request.getParameter("prestado"));	
 		
 		AccesoBD bd = new AccesoBD();
 		bd.conectar();

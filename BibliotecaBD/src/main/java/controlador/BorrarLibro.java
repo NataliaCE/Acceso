@@ -10,42 +10,36 @@ import javax.servlet.http.HttpServletResponse;
 
 import modelo.AccesoBD;
 
-@WebServlet("/InsertaLibros")
-public class InsertaLibros extends HttpServlet{
+@WebServlet("/BorrarLibro")
+public class BorrarLibro extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
 
-	public InsertaLibros() {
+	public BorrarLibro() {
 		super();
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 		
 		int id = Integer.parseInt(request.getParameter("id"));
-		String titulo = request.getParameter("titulo");
-		String autor = request.getParameter("autor");
-		boolean prestado = Boolean.parseBoolean(request.getParameter("prestado"));
 		
-		AccesoBD db = new AccesoBD();
-		db.conectar();
+		AccesoBD bd = new AccesoBD();
+		bd.conectar();
 		
-		if(db.insertar(id, titulo, autor, prestado)) {
+		if(bd.borrar(id)) {
 			try {
-				request.getRequestDispatcher("InsercionCorrecta.jsp").forward(request, response);
+				request.getRequestDispatcher("BorradoCorrecto.jsp").forward(request, response);
+			} catch (ServletException | IOException e) {
+				e.printStackTrace();
+			}
+		} else {
+			try {
+				request.getRequestDispatcher("BorradoFallido.jsp").forward(request, response);
 			} catch (ServletException | IOException e) {
 				e.printStackTrace();
 			}
 		}
-		else {
-			try {
-				request.getRequestDispatcher("InsercionFallida.jsp").forward(request, response);
-			} catch (ServletException | IOException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		db.desconectar();
-		
+		bd.desconectar();
 	}
-
+	
 }

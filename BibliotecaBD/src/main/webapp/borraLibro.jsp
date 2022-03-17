@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="UTF-8"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>ModificaciÃ³n correcta</title>
+<title>Borrar libro</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
 	integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
@@ -26,10 +27,11 @@
 	src="https://maps.googleapis.com/maps-api-v3/api/js/48/2/intl/es_ALL/common.js"></script>
 <script type="text/javascript" charset="UTF-8"
 	src="https://maps.googleapis.com/maps-api-v3/api/js/48/2/intl/es_ALL/util.js"></script>
+
 </head>
 
 <body>
-	<%
+<%
 	String id = request.getParameter("id");
 	String titulo = request.getParameter("titulo");
 	String autor = request.getParameter("autor");
@@ -43,18 +45,20 @@
 	%>
 	<div class="container-fluid">
 		<div class="row justify-content-md-center">
-			<div class="col-md-6">
+			<div class="col-md-5">
 				<div class="card">
-					<div class="card-header">
-						<h4 class="card-title">Insertar libro</h4>
+					<div class="card-header text-center">
+						<h1 class="card-title">Borrar</h1>
 					</div>
-					<div class="card-body text-center">
-						<p>Datos guardados</p>
+					<div class="card-body">
+						<div class="row justify-content-md-center">
+							<p>¿Desea borrar este libro?</p>
+						</div>
 						<p>
 							Id:
 							<%=id%></p>
 						<p>
-							TÃ­tulo:
+							Título:
 							<%=titulo%></p>
 						<p>
 							Autor:
@@ -65,15 +69,16 @@
 						<div class="row justify-content-md-center">
 							<div class="col-md-5 pr-1">
 								<div class="form-group">
-									<form method="post" action="InsertaLibros.jsp">
-										<button class="btn btn-info">AÃ±adir otro libro</button>
+									<form method="post" action="BorrarLibro">
+										<input type="hidden" name="id" value="<%=id%>">
+										<button class="btn btn-info">Borrar</button>
 									</form>
 								</div>
 							</div>
 							<div class="col-md-3 px-1">
 								<div class="form-group">
 									<form method="post" action="MostrarLibros">
-										<button class="btn btn-info">Mostrar libros</button>
+										<button class="btn btn-info">No borrar</button>
 									</form>
 								</div>
 							</div>
@@ -83,6 +88,7 @@
 			</div>
 		</div>
 	</div>
+
 	<script
 		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
 		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
@@ -109,5 +115,6 @@
 		type="text/javascript"></script>
 	<!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
 	<script src="../assets/js/demo.js"></script>
+
 </body>
 </html>

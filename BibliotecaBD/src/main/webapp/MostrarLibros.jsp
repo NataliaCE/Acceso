@@ -75,7 +75,11 @@
 
 								<td>
 									<form method="post" action="borraLibro.jsp">
-										<input type="hidden" name="id" value="<%l.getId();%>">
+										<input type="hidden" name="id" value="<%=l.getId()%>">
+										<input type="hidden" name="titulo" value="<%=l.getTitulo()%>">
+										<input type="hidden" name="autor" value="<%=l.getAutor()%>">
+										<input type="hidden" name="prestado"
+											value="<%=l.isPrestado()%>">
 										<button type="submit" class="btn btn-danger">Borrar</button>
 									</form>
 								</td>
@@ -86,6 +90,13 @@
 								%>
 							</tbody>
 						</table>
+						<div class="row justify-content-md-center mt-4">
+								<div class="col-md-3 pr-1">
+									<form method="post" action="InsertaLibros.jsp">
+										<button class="btn btn-info">Insertar libro</button>
+									</form>
+								</div>
+							</div>
 					</div>
 				</div>
 			</div>
