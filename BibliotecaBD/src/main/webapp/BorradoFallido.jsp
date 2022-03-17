@@ -36,7 +36,7 @@
 			<div class="col-md-5">
 				<div class="card">
 					<div class="card-header text-center">
-						<h1 class="card-title">Borrar</h1>
+						<h4 class="card-title">Borrar</h4>
 					</div>
 					<div class="card-body">
 						<div class="row justify-content-md-center">

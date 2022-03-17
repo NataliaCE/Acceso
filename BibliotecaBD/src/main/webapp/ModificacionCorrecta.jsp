@@ -43,27 +43,27 @@
 	%>
 	<div class="container-fluid">
 		<div class="row justify-content-md-center">
-			<div class="col-md-6">
+			<div class="col-md-5">
 				<div class="card">
 					<div class="card-header">
 						<h4 class="card-title">Modificar libro</h4>
 					</div>
 					<div class="card-body">
-						<p>Datos guardados</p>
+						<p>DATOS GUARDADOS</p>
 						<p>
-							Id:
+							<b>Id:</b>
 							<%=id%></p>
 						<p>
-							Título:
+							<b>Título:</b>
 							<%=titulo%></p>
 						<p>
-							Autor:
+							<b>Autor:</b>
 							<%=autor%></p>
 						<p>
-							Estado:
+							<b>Estado:</b>
 							<%=prestado%></p>
 						<div class="row justify-content-md-center mt-4">
-							<div class="col-md-3 pr-1">
+							<div class="col-md-4 pr-2">
 								<form method="post" action="MostrarLibros">
 									<button class="btn btn-info">Volver al listado</button>
 								</form>

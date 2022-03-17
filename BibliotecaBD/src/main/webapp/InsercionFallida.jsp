@@ -36,11 +36,12 @@
 			<div class="col-md-5">
 				<div class="card">
 					<div class="card-header text-center">
-						<h1 class="card-title">Insertar</h1>
+						<h4 class="card-title">Insertar</h4>
 					</div>
 					<div class="card-body">
 						<div class="row justify-content-md-center">
 							<p>Ha sucedido un error al insertar el libro.</p>
+							<p>Comprueba que el ID introducido no existe.</p>
 						</div>
 						<div class="row justify-content-md-center mt-4">
 							<div class="col-md-3 pr-1">

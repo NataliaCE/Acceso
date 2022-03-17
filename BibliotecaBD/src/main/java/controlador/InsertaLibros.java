@@ -21,30 +21,42 @@ public class InsertaLibros extends HttpServlet{
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 		
-		int id = Integer.parseInt(request.getParameter("id"));
+		String idString = request.getParameter("id");
 		String titulo = request.getParameter("titulo");
 		String autor = request.getParameter("autor");
 		boolean prestado = Boolean.parseBoolean(request.getParameter("prestado"));
 		
-		AccesoBD db = new AccesoBD();
-		db.conectar();
-		
-		if(db.insertar(id, titulo, autor, prestado)) {
+		if(idString=="" || titulo=="" || autor=="") {
 			try {
-				request.getRequestDispatcher("InsercionCorrecta.jsp").forward(request, response);
+				request.getRequestDispatcher("InsercionVacia.jsp").forward(request, response);
 			} catch (ServletException | IOException e) {
 				e.printStackTrace();
 			}
-		}
-		else {
-			try {
-				request.getRequestDispatcher("InsercionFallida.jsp").forward(request, response);
-			} catch (ServletException | IOException e) {
-				e.printStackTrace();
+		} else {
+			
+			int id = Integer.parseInt(idString);
+			
+			AccesoBD db = new AccesoBD();
+			db.conectar();
+			
+			if(db.insertar(id, titulo, autor, prestado)) {
+				try {
+					request.getRequestDispatcher("InsercionCorrecta.jsp").forward(request, response);
+				} catch (ServletException | IOException e) {
+					e.printStackTrace();
+				}
 			}
+			else {
+				try {
+					request.getRequestDispatcher("InsercionFallida.jsp").forward(request, response);
+				} catch (ServletException | IOException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			db.desconectar();
+			
 		}
-		
-		db.desconectar();
 		
 	}
 

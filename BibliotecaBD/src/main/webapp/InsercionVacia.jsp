@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="UTF-8"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>ModificaciÃ³n correcta</title>
+<title>Inserción vacía</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
 	integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
@@ -26,47 +27,26 @@
 	src="https://maps.googleapis.com/maps-api-v3/api/js/48/2/intl/es_ALL/common.js"></script>
 <script type="text/javascript" charset="UTF-8"
 	src="https://maps.googleapis.com/maps-api-v3/api/js/48/2/intl/es_ALL/util.js"></script>
+
 </head>
 
 <body>
-	<%
-	String id = request.getParameter("id");
-	String titulo = request.getParameter("titulo");
-	String autor = request.getParameter("autor");
-	String prestado;
-	boolean prestadoBool = Boolean.parseBoolean(request.getParameter("prestado"));
-	if(prestadoBool) {
-		prestado = "Prestado";
-	} else {
-		prestado = "Disponible";
-	}
-	%>
 	<div class="container-fluid">
 		<div class="row justify-content-md-center">
-			<div class="col-md-6">
+			<div class="col-md-5">
 				<div class="card">
-					<div class="card-header">
-						<h4 class="card-title">Insertar libro</h4>
+					<div class="card-header text-center">
+						<h4 class="card-title">Insertar</h4>
 					</div>
-					<div class="card-body text-center">
-						<p>DATOS GUARDADOS</p>
-						<p>
-							<b>Id:</b>
-							<%=id%></p>
-						<p>
-							<b>TÃ­tulo:</b>
-							<%=titulo%></p>
-						<p>
-							<b>Autor:</b>
-							<%=autor%></p>
-						<p>
-							<b>Estado:</b>
-							<%=prestado%></p>
+					<div class="card-body">
+						<div class="row justify-content-md-center">
+							<p>Por favor, rellene todos los campos.</p>
+						</div>
 						<div class="row justify-content-md-center">
 							<div class="col-md-5 pr-1">
 								<div class="form-group">
 									<form method="post" action="InsertaLibros.jsp">
-										<button class="btn btn-info">AÃ±adir otro libro</button>
+										<button class="btn btn-info">Intentar otra vez</button>
 									</form>
 								</div>
 							</div>
@@ -83,6 +63,7 @@
 			</div>
 		</div>
 	</div>
+
 	<script
 		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
 		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
@@ -109,5 +90,6 @@
 		type="text/javascript"></script>
 	<!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
 	<script src="../assets/js/demo.js"></script>
+
 </body>
 </html>

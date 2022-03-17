@@ -35,7 +35,7 @@
 			<div class="col-md-12">
 				<div class="card strpied-tabled-with-hover">
 					<div class="card-header ">
-						<h4 class="card-title">Listado de libros</h4>
+						<h2 class="card-title">Listado de libros</h2>
 					</div>
 					<div class="card-body table-full-width table-responsive">
 						<table class="table table-hover table-striped">
@@ -90,13 +90,22 @@
 								%>
 							</tbody>
 						</table>
-						<div class="row justify-content-md-center mt-4">
-								<div class="col-md-3 pr-1">
+						<div class="row justify-content-md-center">
+							<div class="col-md-1 pr-1">
+								<div class="form-group">
 									<form method="post" action="InsertaLibros.jsp">
-										<button class="btn btn-info">Insertar libro</button>
+										<button class="btn btn-info">Insertar</button>
 									</form>
 								</div>
 							</div>
+							<div class="col-md-3 px-1">
+								<div class="form-group">
+									<form method="post" action="Index.jsp">
+										<button class="btn btn-info">Volver a inicio</button>
+									</form>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
